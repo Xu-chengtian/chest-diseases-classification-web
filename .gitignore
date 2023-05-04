@@ -1,1 +1,6 @@
 *.pth
+heatmap_output/
+0427115128/
+__pycache__/
+*.jpg
+.DS_Store

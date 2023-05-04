@@ -3,6 +3,7 @@ from torchvision import transforms
 from PIL import Image
 import numpy as np
 import torch
+import os 
 
 def test_pic(path):
     transform_test = transforms.Compose([
@@ -18,7 +19,7 @@ def test_pic(path):
     test_pic = torch.unsqueeze(test_pic,0)
 
     net = DenseNet()
-    pretrained = torch.load("/Users/xuchengtian/code/chest-diseases-classification-web/27-11-54-24-epoch2.pth")
+    pretrained = torch.load(os.path.join(os.getcwd(),'0427115128','27-11-53-02-epoch1.pth'))
     net.load_state_dict(pretrained['net'])
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     net.to(device)

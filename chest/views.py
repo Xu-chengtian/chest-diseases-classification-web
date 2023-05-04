@@ -5,6 +5,7 @@ from PIL import Image
 import os
 from django import forms
 from test import test_pic
+from heatmap import heatmap
 # Create your views here.
 
 disease={1: 'Atelectasis', 2: 'Cardiomegaly', 3: 'Effusion', 4: 'Infiltration', 5: 'Mass', 
@@ -32,7 +33,7 @@ def classification(request):
     if request.method == "POST":
         handle_uploaded_file(request.FILES["image"])
 
-        test_result = test_pic(os.path.join(os.getcwd(),'photo.jpg'))
+        test_result = heatmap(os.path.join(os.getcwd(),'photo.jpg'),os.path.join(os.getcwd(),'0427115128','27-11-53-02-epoch1.pth'))
         ans=''
         for idx,i in enumerate(test_result):
             if i==0:
