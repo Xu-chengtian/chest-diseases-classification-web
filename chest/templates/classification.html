@@ -1,93 +1,52 @@
 <!DOCTYPE html>  
 <html>  
 <head>  
-	<title>My Page</title>  
-	<style>  
-		/* 样式表 */  
-		body {  
-			margin: 0;  
-			padding: 0;  
-			font-family: Arial, sans-serif;  
-			background-color: #f2f2f2;  
-		}
-
-		.container {  
-			max-width: 960px;  
-			margin: 0 auto;  
-			padding: 20px;  
-			display: flex;  
-			flex-wrap: wrap;  
-			justify-content: space-between;  
-			align-items: center;  
-		}
-
-		.image-container {  
-			flex-basis: 100%;  
-			flex-grow: 1;  
-			max-width: 100%;  
-			max-height: 100%;  
-			object-fit: cover;  
-			text-align: center;  
-		}
-
-		.table-container {  
-			flex-basis: 100%;  
-			flex-grow: 1;  
-			max-width: 100%;  
-			max-height: 300px;  
-			margin-bottom: 20px;  
-			display: flex;  
-			flex-wrap: wrap;  
-			justify-content: space-between;  
-			align-items: center;  
-		}
-
-		.table-cell {  
-			flex-basis: 33.33%;  
-			flex-grow: 1;  
-			max-width: 33.33%;  
-			text-align: center;  
-			font-size: 16px;  
-			font-weight: bold;  
-			color: #333;  
-			margin-bottom: 10px;  
-		}  
-	</style>  
+	<title>分类结果</title>  
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </head>  
 <body>  
-	<div class="container">  
-		<div class="image-container">  
-			<img src="image1.jpg" alt="Image 1">  
-			<img src="image2.jpg" alt="Image 2">  
-		</div>  
-		<div class="table-container">  
-			<table>  
-				<thead>  
-					<tr>  
-						<th>Column 1</th>  
-						<th>Column 2</th>  
-						<th>Column 3</th>  
-					</tr>  
-				</thead>  
-				<tbody>  
-					<tr>  
-						<td>Row 1, Column 1</td>  
-						<td>Row 1, Column 2</td>  
-						<td>Row 1, Column 3</td>  
-					</tr>  
-					<tr>  
-						<td>Row 2, Column 1</td>  
-						<td>Row 2, Column 2</td>  
-						<td>Row 2, Column 3</td>  
-					</tr>  
-					<tr>  
-						<td>Row 3, Column 1</td>  
-						<td>Row 3, Column 2</td>  
-						<td>Row 3, Column 3</td>  
-					</tr>  
-				</tbody>  
-			</table>  
-		</div>  
-	</div>  
+	<div class="container page-header">
+		<h1>
+			胸部X光片分类结果
+			<small> -- powered by 徐承天</small>
+		</h1>
+	</div>
+	<div class="classification">
+		<div class="col-md-3" role="none"></div>
+		<div class="col-md-6" role="main">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>英文疾病名称</th>
+						<th>中文疾病名称</th>
+						<th>是否患病</th>
+					</tr>
+				</thead>
+				<body>
+					{% for diag in diagnose %}
+					{% if diag.diagnose%}
+					<tr class="danger">
+						<td>{{diag.disease_en}}</td>
+						<td>{{diag.disease_cn}}</td>
+						<td>是</td>
+					</tr>
+					{% else %}
+					<tr class="success">
+						<td>{{diag.disease_en}}</td>
+						<td>{{diag.disease_cn}}</td>
+						<td>否</td>
+					</tr>
+					{% endif %}
+					{% endfor %}
+				</body>
+			</table>
+			{% for img in imgs %}
+				<img src="../static/heatmap/{{img}}"/>
+			{% endfor %}
+		</div>
+	</div>
 </body>  
 </html>  

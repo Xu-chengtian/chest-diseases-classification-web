@@ -8,9 +8,13 @@ from test import test_pic
 from heatmap import heatmap
 # Create your views here.
 
-disease={1: 'Atelectasis', 2: 'Cardiomegaly', 3: 'Effusion', 4: 'Infiltration', 5: 'Mass', 
+disease_en={1: 'Atelectasis', 2: 'Cardiomegaly', 3: 'Effusion', 4: 'Infiltration', 5: 'Mass', 
          6: 'Nodule', 7: 'Pneumonia', 8: 'Pneumothorax', 9: 'Consolidation', 10: 'Edema', 
-         11: 'Emphysema', 12: 'Fibrosis', 13: 'Pleural_Thickening', 14: 'Hernia', 0: 'No Finding'}
+         11: 'Emphysema', 12: 'Fibrosis', 13: 'Pleural_Thickening', 14: 'Hernia'}
+
+disease_cn={1: '肺不张', 2: '心脏肥大', 3: '积液', 4: '浸润', 5: '肿块', 
+         6: '结节', 7: '肺炎', 8: '气胸', 9: '变实', 10: '水肿', 
+         11: '肺气肿', 12: '纤维变性', 13: '胸膜增厚', 14: '疝气'}
 
 def handle_uploaded_file(f):
     with open(os.path.join(os.getcwd(),'photo.jpg'), "wb+") as destination:
@@ -34,15 +38,19 @@ def classification(request):
         handle_uploaded_file(request.FILES["image"])
 
         test_result = heatmap(os.path.join(os.getcwd(),'photo.jpg'),os.path.join(os.getcwd(),'0427115128','27-11-53-02-epoch1.pth'))
-        ans=''
-        for idx,i in enumerate(test_result):
-            if i==0:
-                continue
-            ans+=disease[idx+1]+' : '+str(i)+' '
-        if ans=='':
-            ans='result: healthy'
-        else:
-            ans='result: '+ans
-        return HttpResponse(ans)
+
+        diagnose=[]
+        img_name=[]
+        for i in range(14):
+            diagnose.append({'disease_en':disease_en[i+1],'disease_cn':disease_cn[i+1],'diagnose':test_result[i]})
+            if test_result[i]==1:
+                img_name.append('heatmap'+str(i+1)+'.jpg')
+
+        return render(request, 'classification.html',
+                      {
+                          'diagnose':diagnose,
+                          'imgs':img_name
+                      }
+                      )
  
     return render(request, 'upload.html')
