@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from chest.models import Chest
 from PIL import Image
 import os
+import random
 from django import forms
 from test import test_pic
 from heatmap import heatmap
@@ -34,23 +35,31 @@ def patient(request):
     return HttpResponse(return_str)
 
 def classification(request):
+    model_paths=[]
+    for model_path in os.listdir(os.path.join(os.getcwd(),'models')):
+        if model_path[0]=='.':
+            continue
+        model_paths.append(model_path)
     if request.method == "POST":
         handle_uploaded_file(request.FILES["image"])
-
-        test_result = heatmap(os.path.join(os.getcwd(),'photo.jpg'),os.path.join(os.getcwd(),'0427115128','27-11-53-02-epoch1.pth'))
-
+ 
+        random_path = random.choice(model_paths)
+        model_path=os.path.join(os.getcwd(),'models',random_path)
+        test_result = heatmap(os.path.join(os.getcwd(),'photo.jpg'),model_path)
+        print(test_result)
+        
         diagnose=[]
-        img_name=[]
+        imgs=[]
         for i in range(14):
             diagnose.append({'disease_en':disease_en[i+1],'disease_cn':disease_cn[i+1],'diagnose':test_result[i]})
             if test_result[i]==1:
-                img_name.append('heatmap'+str(i+1)+'.jpg')
+                imgs.append({'disease':disease_cn[i+1],'image':'heatmap'+str(i+1)+'.jpg'})
 
         return render(request, 'classification.html',
                       {
                           'diagnose':diagnose,
-                          'imgs':img_name
+                          'imgs':imgs
                       }
                       )
- 
-    return render(request, 'upload.html')
+    
+    return render(request, 'upload.html',{'model_paths':model_paths})

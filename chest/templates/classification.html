@@ -14,38 +14,66 @@
 			<small> -- powered by 徐承天</small>
 		</h1>
 	</div>
-	<div class="classification">
-		<div class="col-md-3" role="none"></div>
-		<div class="col-md-6" role="main">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>英文疾病名称</th>
-						<th>中文疾病名称</th>
-						<th>是否患病</th>
-					</tr>
-				</thead>
-				<body>
-					{% for diag in diagnose %}
-					{% if diag.diagnose%}
-					<tr class="danger">
-						<td>{{diag.disease_en}}</td>
-						<td>{{diag.disease_cn}}</td>
-						<td>是</td>
-					</tr>
-					{% else %}
-					<tr class="success">
-						<td>{{diag.disease_en}}</td>
-						<td>{{diag.disease_cn}}</td>
-						<td>否</td>
-					</tr>
-					{% endif %}
+	<div class="row">
+		<div class="classification">
+			<div class="col-md-3" role="none"></div>
+			<div class="col-md-6" role="main">
+				<div class="panel panel-primary">
+					<div class="panel-heading text-center">
+						<h4>疾病分类展示</h4>
+					</div>
+					<div class="panel-body">
+						<table class="table table-bordered text-center">
+							<thead>
+								<tr class="info">
+									<td><strong>英文疾病名称</strong></td>
+									<td><strong>中文疾病名称</strong></td>
+									<td><strong>是否患病</strong></td>
+								</tr>
+							</thead>
+							<body>
+								{% for diag in diagnose %}
+								{% if diag.diagnose%}
+								<tr class="danger">
+									<td>{{diag.disease_en}}</td>
+									<td>{{diag.disease_cn}}</td>
+									<td>是</td>
+								</tr>
+								{% else %}
+								<tr class="success">
+									<td>{{diag.disease_en}}</td>
+									<td>{{diag.disease_cn}}</td>
+									<td>否</td>
+								</tr>
+								{% endif %}
+								{% endfor %}
+							</body>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2" role="none"></div>
+        <div class="col-md-8" role="main">
+			<div class="panel panel-primary">
+				<div class="panel-heading text-center">
+					<h4>疾病热图展示</h4>
+				</div>
+				<div class="panel-body">
+					{% for img in imgs %}
+					<div class="col-md-4">
+						<div class="thumbnail">
+							<img src="../static/heatmap/{{img.image}}" alt="疾病热图">
+							<div class="caption text-center">
+								<h3>{{img.disease}}</h3>
+							</div>
+						</div>
+					</div>
 					{% endfor %}
-				</body>
-			</table>
-			{% for img in imgs %}
-				<img src="../static/heatmap/{{img}}"/>
-			{% endfor %}
+				</div>
+			</div>
 		</div>
 	</div>
 </body>  

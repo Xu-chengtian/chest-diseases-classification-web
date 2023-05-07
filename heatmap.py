@@ -44,7 +44,7 @@ def heatmap(path,model):
     test_pic = torch.unsqueeze(test_pic,0)
 
     net = DenseNet()
-    pretrained = torch.load(model)
+    pretrained = torch.load(model, map_location='cpu')
     net.load_state_dict(pretrained['net'])
     net.eval()
     # print(net)

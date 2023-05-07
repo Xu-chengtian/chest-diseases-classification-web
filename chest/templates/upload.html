@@ -1,7 +1,7 @@
 <!DOCTYPE html>  
 <html>  
 <head>  
-	<title>图片上传</title>  
+	<title>胸部X光片上传</title>  
 	<meta charset="UTF-8">  
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">  
 	<style>  
@@ -41,12 +41,23 @@
 </head>  
 <body>  
 	<div class="container">  
-		<h2>上传图片</h2>  
+		<h2>上传胸部X光片</h2>  
 		<form action="/chest/classification" method="post" enctype="multipart/form-data">  
-			{% csrf_token %}  
+			{% csrf_token %} 
+			<h4>选择分类模型</h4>
+			<select class="form-control" id="model_select" name="model_select">
+				
+				{% for path in model_paths %}
+					<option>{{path}}</option>
+				{% endfor %}
+			</select>
 			<input type="file" name="image" accept="image/*">  
 			<input type="submit" value="上传">  
 		</form>  
 	</div>  
 </body>  
 </html>  
+
+<script>
+
+</script>
