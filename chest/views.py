@@ -22,6 +22,9 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
 
+def index(request):
+    return render(request, 'index.html')
+
 def hello_world(request):
     return HttpResponse("Hello World")
 
