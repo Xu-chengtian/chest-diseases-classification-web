@@ -29,8 +29,6 @@ def returnCAM(feature_conv, weight_softmax, idx):
 
 
 def heatmap(path,model):
-    shutil.rmtree(os.path.join(os.getcwd(),'chest','static','heatmap'))
-    os.makedirs(os.path.join(os.getcwd(),'chest','static','heatmap'))
     transform_test = transforms.Compose([
         transforms.Grayscale(num_output_channels=3),
         transforms.Resize(256),
@@ -63,6 +61,6 @@ def heatmap(path,model):
             CAMs = returnCAM(features_blobs[0], classify, idx)
             heatmap = cv2.applyColorMap(CAMs, cv2.COLORMAP_JET)
             heatmap = cv2.resize(heatmap, (896,896))
-            result = heatmap * 0.2 + img * 0.9
+            result = heatmap * 0.4 + img * 0.9
             cv2.imwrite(os.path.join(os.getcwd(),'chest','static','heatmap','heatmap'+str(idx+1)+'.jpg'), result)
     return ans

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Probably the most complete UI kit out there. Multiple functionalities and controls added,  extended color palette and beautiful typography, designed as its own extended version of Bootstrap at  the highest level of quality.                             ">
+    <meta name="author" content="Webpixels">
+    <title>Chest Diseases Classification - Graduation Design Made by Chengtian Xu</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link type="text/css" href="../static/assets/css/theme.css" rel="stylesheet">
+    <!-- Demo CSS - No need to use these in your project -->
+    <link type="text/css" href="../static/assets/css/demo.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4">
+      <div class="container">
+        <a class="navbar-brand" href="./"><strong>Chest Disease Classification</strong> 肺部疾病分类系统</a>
+        <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main" aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
+          <ul class="navbar-nav ml-auto align-items-lg-center">
+            <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Menu</h6>
+            <li class="nav-item active">
+              <a class="nav-link" href="./">首页</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">功能</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="dataset">数据集</a>
+                <a class="dropdown-item" href="preprocess">预处理</a>
+                <a class="dropdown-item" href="model">训练过程</a>
+                <a class="dropdown-item" href="classification">分类展示</a>
+              </div>
+            </li>
+            <li class="nav-item disabled">
+              <a class="nav-link" href="#">论文</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/Xu-chengtian/chest-diseases-classification" target="_blank" class="nav-link d-lg-none">源码地址</a>
+              <a href="https://github.com/Xu-chengtian/chest-diseases-classification" target="_blank" class="btn btn-sm bg-white d-none d-lg-inline-flex">源码地址</a>
+            </li>
+            <div class="dropdown-divider d-lg-none my-4"></div>
+            <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Social Media</h6>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://github.com/Xu-chengtian" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="main">
+      <section class="spotlight parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url('../static/assets/images/background1.jpg')">
+        <span class="mask bg-tertiary alpha-4"></span>
+        <div class="spotlight-holder py-lg pt-lg-xl">
+          <div class="container d-flex align-items-center no-padding">
+            <div class="col">
+              <div class="row cols-xs-space align-items-center text-center text-md-left justify-content-center">
+                <div class="col-lg-7">
+                  <div class="text-center mt-5">
+                    <h2 class="heading display-4 font-weight-400 text-white mt-5 animated" data-animation-in="fadeInUp" data-animation-delay="2000">
+                      <span class="font-weight-700">数据集介绍
+                    </h2>
+                    <p class="lead lh-180 text-white mt-3">
+                      本系统所使用的是开源数据集 NIH Chest X-rays
+                    </p>
+                    <div class="mt-5">
+                      <a href="https://www.kaggle.com/datasets/nih-chest-xrays/data" class="btn btn-info btn-lg">数据集下载</a>
+                    </div>
+                    <div class="mt-5">
+                      <a href="#overview" class="btn btn-primary mr-3 btn-lg">数据集概览</a>
+                      <a href="#diseases" class="btn btn-primary btn-lg">疾病展示</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="slice-lg" id="overview">
+        <div class="container">
+          <div class="row align-items-center cols-xs-space cols-sm-space cols-md-space">
+            <div class="col-lg-6 order-lg-2 ml-lg-auto">
+              <div class="block block-image">
+                <img src="../static/assets/images/NIH.png" class="img-fluid img-center">
+              </div>
+            </div>
+            <div class="col-lg-5 order-lg-1">
+              <div class="row-wrapper">
+                <div class="row">
+                  <div class="col">
+                    <div class="d-flex align-items-start">
+                      <div class="icon icon-lg">
+                        <i class="fa fa-camera" aria-hidden="true"></i>
+                      </div>
+                      <div class="icon-text">
+                        <h3 class="heading h4">胸部X射线光片</h3>
+                        <p>胸部X射线光片(chest X-ray radiographs，CXR)是目前临床上使用最广泛的医学成像技术，是发现肺炎早期病症的最有效方法。</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="d-flex align-items-start">
+                      <div class="icon icon-lg">
+                        <i class="fa fa-certificate"></i>
+                      </div>
+                      <div class="icon-text">
+                        <h3 class="heading h4">包含疾病 <small>(共14种)</small></h3>
+                        <p>疾病名称：肺不张、变实、浸润、气胸、水肿、肺气肿、纤维变性、积液、肺炎、胸膜增厚、心脏肥大、结节、肿块和疝气。</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="d-flex align-items-start">
+                      <div class="icon icon-lg">
+                        <i class="fa fa-bookmark"></i>
+                      </div>
+                      <div class="icon-text">
+                        <h3 class="heading h4">数据集大小</h3>
+                        <p>包含30,805名患者的112,120张正面视图的X射线图像，每名患者提供的图像数量不同，每个图像可以有多个标签。</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="slice sct-color-1">
+        <div class="container">
+          <div class="row cols-xs-space cols-sm-space align-items-center">
+            <div class="col-md-6">
+              <img src="../static/assets/images/diseases.png" class="img-center img-fluid rounded z-depth-3">
+            </div>
+            <div class="col-md-6 col-lg-5 ml-lg-auto">
+              <div class="pr-md-4">
+                <h3 class="heading heading-3 strong-500">
+                  疾病关系图
+                </h3>
+                <p class="lead text-gray mt-4">NIH官方根据数据集中所有图像对应的标签，统计了各疾病之间的关系。左图中显示了其中8个常见的疾病的关系图，其余6种基本因为标签数量不足无法统计。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="container-fluid px-0">
+          <div class="card-group flex-column flex-md-row">
+            <div class="card bg-primary text-white px-4 px-lg-5 py-5 rounded-0 border-0 mb-0">
+              <div class="card-body">
+                <h1 class="heading h2 text-white">数据集分割</h1>
+                <p class="mt-4">
+                  在传统数据集分割中，同一张图像不能同时存在于训练集和测试集。考虑到本数据集中一名患者可以提供多张X光片图像，在数据集分割时，同一名患者的所有图像将只存在于训练集或测试集。
+                </p>
+                <a href="" class="btn btn-secondary mt-4 disabled">了解更多</a>
+              </div>
+            </div>
+            <div class="card bg-secondary px-4 px-lg-5 py-5 rounded-0 border-0 mb-0">
+              <div class="card-body">
+                <h1 class="heading h2">测试集</h1>
+                <p class="mt-4">
+                  测试集共包含86,524张图像，本系统采用txt文件存放图像绝对路径及其标签。
+                </p>
+                <a href="https://github.com/Xu-chengtian/chest-diseases-classification/blob/main/dataset/train.txt" class="btn btn-primary mt-4">测试集下载</a>
+              </div>
+            </div>
+            <div class="card bg-tertiary text-white px-4 px-lg-5 py-5 rounded-0 border-0 mb-0">
+              <div class="card-body">
+                <h1 class="heading h2 text-white">训练集</h1>
+                <p class="mt-4">
+                  训练集共包含25,596张图像。
+                </p>
+                <a href="https://github.com/Xu-chengtian/chest-diseases-classification/blob/main/dataset/test.txt" class="btn btn-secondary mt-4">训练集下载</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slice slice-lg" id="diseases">
+      <div class="container">
+        <div class="mb-5 text-center">
+          <h3 class="heading h2">数据集X光片图像展示</h3>
+          <div class="fluid-paragraph text-center">
+            <p class="lead mb-0">图像为X光片针对其第一个疾病标签生成的热图与原图的叠加</p>
+          </div>
+        </div>
+        <div class="row cols-md-space cols-sm-space cols-xs-space">
+          <div class="col-lg-4">
+            <div class="card border-0">
+              <img src="../static/assets/images/xray1.png" class="img-fluid img-center rounded z-depth-2">
+              <div class="pt-4">
+                <span class="text-muted">积液，浸润，肺不张</span>
+                <a href="#" class="heading h4 d-block mt-1">Effusion; Infiltration; Atelectasis</a>
+                <p class="mt-3">
+                  findings include: 1. left basilar at- electasis/consolidation. 2. prominent hilum (mediastinal adenopathy). 3. left pic catheter (tip in atriocaval junc- tion). 4. stable, normal appearing car- diomediastinal silhouette. impression: small right pleural ef- fusion otherwise stable abnormal study including left basilar infil- trate/atelectasis, prominent hilum, and position of left pic catheter (tip atriocaval junction).
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card border-0">
+              <img src="../static/assets/images/xray2.png" class="img-fluid img-center rounded z-depth-2">
+              <div class="pt-4">
+                <span class="text-muted">心脏肥大</span>
+                <a href="#" class="heading h4 d-block mt-1">Cardiomegaly</a>
+                <p class="mt-3">
+                  findings include: 1. cardiomegaly (ct ratio of 17/30). 2. otherwise normal lungs and mediastinal contours. 3. no evidence of focal bone lesion. dictat- ing
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card border-0">
+              <img src="../static/assets/images/xray3.png" class="img-fluid img-center rounded z-depth-2">
+              <div class="pt-4">
+                <span class="text-muted">积液，结节</span>
+                <a href="#" class="heading h4 d-block mt-1">Effusion; Nodule</a>
+                <p class="mt-3">
+                  findings: no appreciable change since XX/XX/XX. small right pleural effu- sion. elevation right hemidiaphragm. diffuse small nodules throughout the lungs, most numerous in the left mid and lower lung. impression: no change with bilateral small lung metastases.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row cols-md-space cols-sm-space cols-xs-space">
+            <div class="col-lg-4">
+              <div class="card border-0">
+                <img src="../static/assets/images/xray4.png" class="img-fluid img-center rounded z-depth-2">
+                <div class="pt-4">
+                  <span class="text-muted">浸润</span>
+                  <a href="#" class="heading h4 d-block mt-1">Infiltration</a>
+                  <p class="mt-3">
+                    findings: port-a-cath reservoir re- mains in place on the right. chest tube remains in place, tip in the left apex. no pneumothorax. diffuse patchy in- filtrates bilaterally are decreasing. impression: infiltrates and effusions decreasing.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card border-0">
+                <img src="../static/assets/images/xray5.png" class="img-fluid img-center rounded z-depth-2">
+                <div class="pt-4">
+                  <span class="text-muted">肿块</span>
+                  <a href="#" class="heading h4 d-block mt-1">Mass</a>
+                  <p class="mt-3">
+                    findings: right internal jugular catheter remains in place. large metastatic lung mass in the lateral left upper lobe is again noted. no in- filtrate or effusion. extensive surgical clips again noted left axilla. impression: no significant change.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card border-0">
+                <img src="../static/assets/images/xray6.png" class="img-fluid img-center rounded z-depth-2">
+                <div class="pt-4">
+                  <span class="text-muted">结节，浸润</span>
+                  <a href="#" class="heading h4 d-block mt-1">Nodule; Infiltration</a>
+                  <p class="mt-3">
+                    findings: pa and lateral views of the chest demonstrate stable 2.2 cm nod- ule in left lower lung field posteriorly. the lungs are clear without infiltrate or effusion. cardiomediastinal silhou- ette is normal size and contour. pul- monary vascularity is normal in cal- iber and distribution.
+impression: stable left likely hamar- toma.
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="pt-5 pb-3 footer  footer-dark bg-tertiary">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <div class="pr-lg-5">
+            <h1 class="heading h6 text-uppercase font-weight-700 mb-3"><strong>Boomerang</strong> UI Kit</h1>
+            <p>Boomerang is a high quality UI Kit built on top of the well known Bootstrap 4 Framework. This theme was designed as its own extended version of Bootstrap with multiple functionalities and controls added, extended color palette and beautiful typography.</p>
+          </div>
+        </div>
+        <div class="col-6 col-md">
+        </div>
+        <div class="col-6 col-md">
+          <h5 class="heading h6 text-uppercase font-weight-700 mb-3">功能</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="dataset">数据集</a></li>
+            <li><a class="text-muted" href="preprocess">预处理</a></li>
+            <li><a class="text-muted" href="model">训练过程</a></li>
+            <li><a class="text-muted" href="classification">分类展示</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5 class="heading h6 text-uppercase font-weight-700 mb-3">相关</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="https://github.com/Xu-chengtian/chest-diseases-classification">源码</a></li>
+            <li><a class="text-muted disabled" href="#">论文</a></li>
+            <li><a class="text-muted" href="https://api.wandb.ai/links/youzhongmanming77/sh2xdmgp">wandb</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5 class="heading h6 text-uppercase font-weight-700 mb-3">关于作者</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="https://www.hdu.edu.cn/main.htm">学校</a></li>
+            <li><a class="text-muted" href="https://github.com/Xu-chengtian">GitHub</a></li>
+            <li><a class="text-muted disabled" href="#">邮箱</a></li>
+            <li><a class="text-muted disabled" href="#">电话</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="d-flex align-items-center">
+        <span class="">
+          &copy; 2018 Webpixels. All rights reserved.
+        </span>
+        <ul class="nav ml-lg-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/Xu-chengtian" target="_blank"><i class="fab fa-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- Core -->
+  <script src="../static/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/assets/vendor/popper/popper.min.js"></script>
+  <script src="../static/assets/js/bootstrap/bootstrap.min.js"></script>
+  <!-- FontAwesome 5 -->
+  <script src="../static/assets/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
+  <!-- Page plugins -->
+  <script src="../static/assets/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+  <script src="../static/assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+  <script src="../static/assets/vendor/input-mask/input-mask.min.js"></script>
+  <script src="../static/assets/vendor/nouislider/js/nouislider.min.js"></script>
+  <script src="../static/assets/vendor/textarea-autosize/textarea-autosize.min.js"></script>
+  <!-- Theme JS -->
+  <script src="../static/assets/js/theme.js"></script>
+</body>
+</html>

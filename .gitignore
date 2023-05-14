@@ -2,7 +2,7 @@
 heatmap_output/
 0427115128/
 __pycache__/
-*.jpg
 .DS_Store
 boomerang-free-bootstrap-ui-kit-master/
 db.sqlite3
+heatmap/

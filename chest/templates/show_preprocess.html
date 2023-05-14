@@ -52,38 +52,88 @@
       </div>
     </nav>
     <main class="main">
-      <section class="spotlight parallax bg-cover bg-size--cover" data-spotlight="fullscreen" style="background-image: url('../static/assets/images/background1.jpg')">
+      <section class="py-5 bg-cover bg-size--cover"style="background-image: url('../static/assets/images/background1.jpg')">
         <span class="mask bg-primary alpha-5"></span>
-        <div class="spotlight-holder py-lg pt-lg-xl">
-          <div class="container d-flex align-items-center no-padding">
-            <div class="col">
-              <div class="row cols-xs-space align-items-center text-center text-md-left justify-content-center">
-                <div class="col-8">
-                  <div class="text-center mt-5">
-                    <img src="../static/assets/images/icon.png" style="width: 200px;" class="img-fluid animated" data-animation-in="jackInTheBox" data-animation-delay="1000">
-                    <h2 class="heading display-4 font-weight-400 text-white mt-5 animated" data-animation-in="fadeInUp" data-animation-delay="2000">
-                      <span class="font-weight-700">欢迎使用肺部疾病分类系统
-                    </h2>
-                    <p class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp" data-animation-delay="2500">
-                      针对胸部X光片的14种肺部疾病分类系统
-                    </p>
-                    <p class="lead text-white mt-3 lh-180 c-white animated" data-animation-in="fadeInUp" data-animation-delay="2500">
-                      由  <strong class="text-white">徐承天</strong> 制作
-                    </p>
+      </section>
+    </main>
+    <section class="slice slice-xl pb-5">
+      <div class="container">
+        <div class="row align-items-center mb-lg-lg">
+          <div class="col-lg-4">
+            <div class="mb-lg mb-lg-0 text-center text-lg-left">
+              <h2 class="heading h2">图像预处理展示</h3>
+              <p class="mt-3">图像预处理是在神经网络训练前对传入图像进行操作，包括缩放、裁剪、翻转等，使得图像与神经网络的输入的尺寸相匹配，是训练模型的重要步骤之一。</p>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card bg-lighter mb-lg mb-lg-0">
+                  <div class="px-3">
+                    <img class="card-img z-depth-2" src="../static/preprocess/photo.jpg" style="margin-top: -30px;" alt="Homapage">
                   </div>
-                  <div class="mt-5 text-center">
-                    <a href="dataset" class="btn btn-outline-info mr-3 btn-lg">数据集</a>
-                    <a href="preprocess" class="btn btn-outline-info mr-3 btn-lg">预处理</a>
-                    <a href="model" class="btn btn-outline-info mr-3 btn-lg">训练过程</a>
-                    <a href="classification" class="btn btn-outline-info mr-3 btn-lg">分类展示</a>
+                  <div class="card-body">
+                    <h5 class="card-title mb-2">原始图像</h5>
+                    <p class="card-text ">尺寸：1024*1024*1<br>
+                    数据集中的初始8位单通道图像，图像大小约400KB</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card bg-lighter mb-lg mb-lg-0">
+                  <div class="px-3">
+                    <img class="card-img z-depth-2" src="../static/preprocess/photo_resize.jpg" style="margin-top: -30px;" alt="Homapage">
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title mb-2">下采样图像</h5>
+                    <p class="card-text">尺寸：256*256*3<br>
+                    下采样操作后的图像，且将通道数拓展为3</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card bg-lighter mb-lg mb-lg-0">
+              <div class="px-3">
+                <img class="card-img z-depth-2" src="../static/preprocess/photo_crop.jpg" style="margin-top: -30px;" alt="Homapage">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title mb-2">裁剪后图像</h5>
+                <p class="card-text">尺寸：224*224*3<br>
+                中心裁剪后的图像，其尺寸已经符合神经网络的输入</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-lighter mb-lg mb-lg-0">
+              <div class="px-3">
+                <img class="card-img z-depth-2" src="../static/preprocess/photo_horizontal.jpg" style="margin-top: -30px;" alt="Homapage">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title mb-2">随机水平翻转后图像</h5>
+                <p class="card-text">尺寸：224*224*3<br>
+                经过了随机水平翻转，增加图片的多样性，水平翻转基本不影响胸部结构</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-lighter mb-lg mb-lg-0">
+              <div class="px-3">
+                <img class="card-img z-depth-2" src="../static/preprocess/photo_normalize.jpg" style="margin-top: -30px;" alt="Homapage">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title mb-2">归一化后图像</h5>
+                <p class="card-text">尺寸：224*224*3<br>
+                经过归一化后的图像，也是预处理的最后一步。减去数据集整体均值再除以方差后，更好地响应激活函数</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <footer class="pt-5 pb-3 footer  footer-dark bg-tertiary">
       <div class="container">
         <div class="row">
