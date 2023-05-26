@@ -80,6 +80,11 @@
                       {% csrf_token %}
                       <button type="submit" class="btn btn-block btn-lg bg-white mt-4">随机展示</button>
                     </form>
+                    <h5 class="text-center text-white pt-3 pb-1">当前使用模型： {{model}}</h5>
+                    <form class="form-primary" action="/change_model" method="post" >
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-block btn-lg bg-white mt-4">更换模型</button>
+                    </form>
                   </div>
                 </div>
               </div>

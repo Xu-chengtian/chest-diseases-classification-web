@@ -11,4 +11,5 @@ urlpatterns = [
     path('randompreprocess', chest.views.preprocess_random),
     path('model', chest.views.model),
     path('randomclassification', chest.views.classification_random),
+    path('change_model', chest.views.change_model),
 ]

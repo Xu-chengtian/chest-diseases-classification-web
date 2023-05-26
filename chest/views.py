@@ -12,6 +12,9 @@ import shutil
 import subprocess
 # Create your views here.
 
+global current_model
+current_model='model_25.pth'
+
 disease_en={1: 'Atelectasis', 2: 'Cardiomegaly', 3: 'Effusion', 4: 'Infiltration', 5: 'Mass', 
          6: 'Nodule', 7: 'Pneumonia', 8: 'Pneumothorax', 9: 'Consolidation', 10: 'Edema', 
          11: 'Emphysema', 12: 'Fibrosis', 13: 'Pleural_Thickening', 14: 'Hernia'}
@@ -24,12 +27,12 @@ def handle_uploaded_file(f,folder):
     if folder=='heatmap':
         shutil.rmtree(os.path.join(os.getcwd(),'chest','static','heatmap'))
         os.makedirs(os.path.join(os.getcwd(),'chest','static','heatmap'))
-    with open(os.path.join(os.getcwd(),'chest','static',folder,'photo.jpg'), "wb+") as destination:
+    with open(os.path.join(os.getcwd(),'chest','static',folder,'photo.png'), "wb+") as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
 def preprocess_photo():
-    picture = Image.open(os.path.join(os.getcwd(),'chest','static','preprocess','photo.jpg'))
+    picture = Image.open(os.path.join(os.getcwd(),'chest','static','preprocess','photo.png'))
     transform_test = transforms.Compose([
         transforms.Grayscale(num_output_channels=3),
         transforms.Resize(256),
@@ -71,6 +74,13 @@ def preprocess(request):
 def preprocess_random(request):
     if request.method == "POST":
         # 随机获取图片
+        pic_list = os.listdir(os.path.join(os.getcwd(),'chest','static','xray'))
+        for path in pic_list:
+            if path[-3:0]!='png':
+                pic_list.remove(path)
+        pic = random.choice(pic_list)
+        picture = Image.open(os.path.join(os.getcwd(),'chest','static','xray',pic))
+        picture.save(os.path.join(os.getcwd(),'chest','static','preprocess','photo.png'))
         preprocess_photo()
         return render(request, 'show_preprocess.html',)
 
@@ -87,10 +97,11 @@ def patient(request):
     return HttpResponse(return_str)
 
 def classification(request):
+    global current_model
     if request.method == "POST":
         handle_uploaded_file(request.FILES["image[]"],'heatmap')
-        model_path=os.path.join(os.getcwd(),'models','05-06-21-44-epoch30.pth')
-        test_result = heatmap(os.path.join(os.getcwd(),'chest','static','heatmap','photo.jpg'),model_path)
+        model_path=os.path.join(os.getcwd(),'models',current_model)
+        test_result = heatmap(os.path.join(os.getcwd(),'chest','static','heatmap','photo.png'),model_path)
         print(test_result)
         
         diagnose=[]
@@ -107,16 +118,22 @@ def classification(request):
                       }
                       )
     
-    return render(request, 'classification.html')
+    return render(request, 'classification.html' ,{'model':current_model})
 
 def classification_random(request):
+    global current_model
     if request.method == "POST":
         shutil.rmtree(os.path.join(os.getcwd(),'chest','static','heatmap'))
         os.makedirs(os.path.join(os.getcwd(),'chest','static','heatmap'))
-        picture = Image.open(os.path.join(os.getcwd(),'chest','static','xray','photo.jpg'))
-        picture.save(os.path.join(os.getcwd(),'chest','static','heatmap','photo.jpg'))
-        model_path=os.path.join(os.getcwd(),'models','05-06-21-44-epoch30.pth')
-        test_result = heatmap(os.path.join(os.getcwd(),'chest','static','heatmap','photo.jpg'),model_path)
+        pic_list = os.listdir(os.path.join(os.getcwd(),'chest','static','xray'))
+        for path in pic_list:
+            if path[-3:0]!='png':
+                pic_list.remove(path)
+        pic = random.choice(pic_list)
+        picture = Image.open(os.path.join(os.getcwd(),'chest','static','xray',pic))
+        picture.save(os.path.join(os.getcwd(),'chest','static','heatmap','photo.png'))
+        model_path=os.path.join(os.getcwd(),'models',current_model)
+        test_result = heatmap(os.path.join(os.getcwd(),'chest','static','heatmap','photo.png'),model_path)
         diagnose=[]
         imgs=[]
         for i in range(14):
@@ -152,3 +169,11 @@ def model(request):
                       'hardwares':hardware
                   }
                   )
+
+def change_model(request):
+    global current_model
+    if current_model=='model_25.pth':
+        current_model='model_30.pth'
+    else:
+        current_model='model_25.pth'
+    return render(request, 'classification.html' ,{'model':current_model})
